@@ -21,7 +21,7 @@
 
 | Payment Portal | Stripe Checkout | Success Page |
 | :---: | :---: | :---: |
-| `./docs/screenshot-portal.png` | `./docs/screenshot-checkout.png` | `./docs/screenshot-success.png` |
+| ![Payment Portal](./docs/screenshot-portal.png) | ![Stripe Checkout](./docs/screenshot-checkout.png) | ![Success Page](./docs/screenshot-success.png) |
 
 ---
 
