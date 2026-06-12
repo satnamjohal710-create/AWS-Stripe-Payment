@@ -19,8 +19,6 @@
 
 ## 📸 Preview
 
-> _Add your screenshots here_
-
 | Payment Portal | Stripe Checkout | Success Page |
 | :---: | :---: | :---: |
 | `./docs/screenshot-portal.png` | `./docs/screenshot-checkout.png` | `./docs/screenshot-success.png` |
