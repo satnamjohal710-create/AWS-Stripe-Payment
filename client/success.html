@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="css/success.css" />
+    <link rel="icon" type="image/x-icon" href="assets/icon.svg" />
+    <title>Payment Successful! 🎉</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div class="navbar">
+      <a class="nav-content" href="/">
+        <span class="brand-name">Satnam<span class="brand-dot">.</span>pay</span>
+      </a>
+    </div>
+
+    <!-- Success Content -->
+    <div class="container">
+      <div class="box">
+        <div class="title">
+          <h1>Payment Success 🎉</h1>
+        </div>
+        <img src="assets/success.svg" alt="Success Checkmark" />
+        <p style="margin-top: 15px; margin-bottom: 15px;">
+          Thank you for your payment! Your transaction completed successfully.<br />
+          A receipt has been sent to your email.
+        </p>
+        <p style="font-size: 0.95rem; color: var(--text-muted);">
+          If you have any questions or don't receive the email, please contact our support at
+          <a href="mailto:support@example.com">support@example.com</a>.
+        </p>
+        <div class="button">
+          <input type="button" value="Back to Dashboard" id="home-btn" />
+        </div>
+      </div>
+
+      <!-- Transaction Log -->
+      <h3 style="align-self: flex-start; margin-bottom: 12px; font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary);">Transaction Details</h3>
+      <pre class="json" id="session-data">Retrieving checkout data from secure Stripe server...</pre>
+    </div>
+
+    <!-- Hydrate Success Transaction Log -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const sessionDataElement = document.getElementById("session-data");
+        const homeBtn = document.getElementById("home-btn");
+
+        // Return to landing page dynamically using relative paths
+        homeBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          window.location.href = "/";
+        });
+
+        // Fetch transaction details from Stripe via Express
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+
+        if (id) {
+          fetch("/checkout-session?id=" + id)
+            .then((res) => {
+              if (!res.ok) throw new Error("Session retrieval failed");
+              return res.json();
+            })
+            .then((session) => {
+              // Extract a clean subset of transaction parameters for the user receipt
+              const receipt = {
+                transaction_id: session.id,
+                amount_total: "$" + (session.amount_total / 100).toFixed(2),
+                currency: session.currency.toUpperCase(),
+                payment_status: session.payment_status.toUpperCase(),
+                customer_email: session.customer_details.email,
+                customer_name: session.customer_details.name,
+                livemode: session.livemode
+              };
+              sessionDataElement.innerText = JSON.stringify(receipt, null, 2);
+            })
+            .catch((err) => {
+              console.error("Error retrieving session details:", err);
+              sessionDataElement.innerText = "Error: Could not retrieve purchase receipt. Details: " + err.message;
+              sessionDataElement.style.color = "var(--error)";
+            });
+        } else {
+          sessionDataElement.innerText = "No checkout session ID found in browser parameters.";
+          sessionDataElement.style.color = "var(--text-muted)";
+        }
+      });
+    </script>
+  </body>
+</html>

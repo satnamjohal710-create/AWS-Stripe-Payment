@@ -1,0 +1,202 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap");
+
+:root {
+  --bg-primary: #080c14;
+  --bg-secondary: #0d1321;
+  --card-bg: rgba(21, 30, 52, 0.45);
+  --card-border: rgba(255, 255, 255, 0.06);
+  --card-glow: rgba(239, 68, 68, 0.1);
+  
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  
+  --accent-primary: #ef4444; /* Error Red */
+  --accent-secondary: #f97316; /* Orange */
+  --accent-gradient: linear-gradient(135deg, #ef4444 0%, #f97316 100%);
+  --accent-glow: rgba(239, 68, 68, 0.35);
+  
+  --font-title: "Plus Jakarta Sans", sans-serif;
+  --font-body: "Outfit", sans-serif;
+  
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-body);
+}
+
+body {
+  padding-top: 80px;
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(239, 68, 68, 0.12) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(249, 115, 22, 0.12) 0px, transparent 50%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 80px;
+  background: rgba(8, 12, 20, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--card-border);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.nav-content {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.brand-name {
+  font-family: var(--font-title);
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
+}
+
+.brand-dot {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-content:hover {
+  transform: scale(1.02);
+}
+
+/* Container */
+.container {
+  max-width: 500px;
+  margin: 80px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.box {
+  width: 100%;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 40px 30px;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--accent-gradient);
+}
+
+.title h1 {
+  font-family: var(--font-title);
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 25px;
+}
+
+.box img {
+  display: block;
+  margin: 25px auto;
+  height: 120px;
+  width: auto;
+  filter: drop-shadow(0 8px 20px rgba(239, 68, 68, 0.4));
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); filter: drop-shadow(0 8px 16px rgba(239, 68, 68, 0.4)); }
+  50% { transform: scale(1.05); filter: drop-shadow(0 12px 24px rgba(239, 68, 68, 0.6)); }
+  100% { transform: scale(1); filter: drop-shadow(0 8px 16px rgba(239, 68, 68, 0.4)); }
+}
+
+.box p {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.button {
+  height: 48px;
+  width: 100%;
+  margin-top: 25px;
+}
+
+.button input {
+  height: 100%;
+  width: 100%;
+  border-radius: var(--radius-md);
+  border: none;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: var(--accent-gradient);
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.25);
+  transition: var(--transition);
+}
+
+.button input:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(239, 68, 68, 0.45);
+}
+
+.button input:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0 16px;
+    margin: 40px auto;
+  }
+  .box {
+    padding: 30px 20px;
+  }
+  .title h1 {
+    font-size: 1.7rem;
+  }
+}

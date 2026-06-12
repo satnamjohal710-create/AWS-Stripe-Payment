@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="css/cancel.css" />
+    <link rel="icon" type="image/x-icon" href="assets/icon.svg" />
+    <title>Transaction Cancelled ⚠️</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div class="navbar">
+      <a class="nav-content" href="/">
+        <span class="brand-name">Satnam<span class="brand-dot">.</span>pay</span>
+      </a>
+    </div>
+
+    <!-- Cancel Content -->
+    <div class="container">
+      <div class="box">
+        <div class="title">
+          <h1>Payment Cancelled ⚠️</h1>
+        </div>
+        <img src="assets/error.svg" alt="Error Icon" />
+        <p style="margin-top: 15px; margin-bottom: 15px;">
+          Your transaction was cancelled and you have not been charged.
+        </p>
+        <p style="font-size: 0.95rem; color: var(--text-muted);">
+          You can return to the dashboard to select another workshop or try registering again.
+        </p>
+        <div class="button">
+          <input type="button" value="Return to Dashboard" id="try-again-btn" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Relative Redirection Handler -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const btn = document.getElementById("try-again-btn");
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          window.location.href = "/";
+        });
+      });
+    </script>
+  </body>
+</html>
