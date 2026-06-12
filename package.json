@@ -1,14 +1,14 @@
 {
-  "name": "stripe-integration",
+  "name": "satnam-pay",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A secure, production-ready Stripe payment gateway accepting dynamic custom USD amounts via inline price_data. Dockerized and deployed on AWS EC2.",
+  "main": "server.js",
   "scripts": {
     "devStart": "nodemon server.js",
     "start": "node server.js"
   },
-  "author": "Kunal Verma",
-  "license": "ISC",
+  "author": "Satnam Singh",
+  "license": "MIT",
   "devDependencies": {
     "nodemon": "^2.0.16"
   },
